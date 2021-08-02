@@ -19,11 +19,16 @@
         UNION:若select出现在UNION之后，则标记为UNION,若UNION包含在FROM字句中，则外层SELECT查询将被标记为:DERIVED.<br>
         UNION RESULT: 从UNION表获取结果的SELECT.select * from a union select * from b; sql的结果 <br>
     </p>
-    <p>
+   <p>
         3.explain 之 type:<br>
         1.NULL: explain select now();<br>
         2.SYSTEM: system类型的表中只有一行数据，一般不会出现.eg:explain select a.* from (select * from user where id = '1') a;<br>
         3.CONST: 表示通过索引一次就找到了，const用于匹配primary key或者unique 索引。因为只匹配一行数据，所以很快。如将之间至于where列表中，mysql就能将该查询转换为一个常量，const表示mysql将主键与唯一索引与该常量完全比对。<br>
+        4.eq_ref:类似于ref,区别在于使用的是唯一索引，使用的主键的关联查询，关联查询的记录只有一条，常见于主键或唯一索引扫描。<br>
+        5.ref: 非唯一索引扫描，返回匹配每个单独值的所有行，本质上也是一种索引访问。<br>
+        6.range: 只检索给定返回的行，使用一个索引选择行。where之后出现between,>,<,in等操作。<br>
+        7.index: index与all的区别在于，index只遍历了索引树，通常比all快，all是遍历叶子节点上的数据文件。<br>
+        8.all: 全表数据扫描。<br>
     </p>
 </body>
 </html>
