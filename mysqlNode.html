@@ -10,9 +10,14 @@
         1. explain 之  id:
         id代表在该条sql语句中执行的顺序，数字越大，执行越靠前 <br/>
     </p>
-    <p>
-        2. explain 之  id:
-        id代表在该条sql语句中执行的顺序，数字越大，执行越靠前 <br/>
+        <p>
+        2. explain 之  select_type:<br>
+        SIMPLE:简单的select查询，没有子查询或UNION；<br>
+        PRIMARY:查询中若包含任何复杂的子查询，最外层查询标记为垓标识；<br>
+        SUBQUERY:SELECT 或 WHERE列表中包含了子查询；<br>
+        DERIVED：在FROM列表中包含了子查询，被标记为DERIVED(衍生)，MYSQL会递归执行这些子查询，把结果放在临时表中；<br>
+        UNION:若select出现在UNION之后，则标记为UNION；若UNION包含在FROM字句中，则外层SELECT查询将被标记为:DERIVED.<br>
+        UNION RESULT: 从UNION表获取结果的SELECT<br>
     </p>
 </body>
 </html>
